@@ -17,6 +17,35 @@ const commentsSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
+        children: [
+            {
+                placeId: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                    index: true,
+                },
+                type: {
+                    type: String,
+                    required: true,
+                    trim: true,
+                },
+                description: {
+                    type: String,
+                    required: true,
+                    trim: true,
+                },
+                createdBy: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                    index: true,
+                },
+                parentCommentId: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                    index: true,
+                },
+            },
+        ],
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,

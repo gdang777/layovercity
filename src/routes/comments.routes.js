@@ -3,9 +3,12 @@ const {
     addComment,
     getAllCommentsForPlaces,
     getAllCommentsForStories,
+    addChildComment,
 } = require('../controllers/comments.controller');
 
 router.post('/', addComment);
+
+router.post('/child', addChildComment);
 
 router.get('/places', getAllCommentsForPlaces);
 

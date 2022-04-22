@@ -16,7 +16,7 @@ const sendMail = async ({ toAddress = '', body = '', subject = 'Test', attachmen
         throw new Error('need target to address to send mail');
     }
     const result = await transporter.sendMail({
-        from: 'rkarthick410@gmail.com', // sender address
+        from: MAILER_EMAIL, // sender address
         to: toAddress, // list of receivers
         subject, // Subject line
         html: body, // html body

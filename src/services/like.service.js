@@ -1,5 +1,5 @@
 const Likes = require('../models/like.model');
-const { getUserById } = require('./user.service');
+const { getAllUsers } = require('./user.service');
 
 exports.addLike = async (data) => {
     const [user] = await Promise.all([
@@ -19,8 +19,13 @@ exports.getAllLikesForPlaces = async (id) => {
 
     let resultData = [];
 
+    const users = await getAllUsers(0, 1000000000000);
+
     for (let i = 0; i < result.length; i++) {
-        const user = await getUserById(result[i].createdBy.toString());
+        const user = users.result.find(
+            (ele) => ele._id.toString() === result[i].createdBy.toString()
+        );
+
         resultData.push({
             ...result[i],
             user: {
@@ -45,9 +50,13 @@ exports.getAllLikesForStories = async (id) => {
 
     let resultData = [];
 
+    const users = await getAllUsers(0, 100000000);
+
     for (let i = 0; i < result.length; i++) {
-        const user = await getUserById(result[i].createdBy.toString());
-        console.log(user);
+        const user = users.result.find(
+            (ele) => ele._id.toString() === result[i].createdBy.toString()
+        );
+
         resultData.push({
             ...result[i],
             user: {
