@@ -1,0 +1,166 @@
+
+
+
+
+.edit Button{
+    background-color: blue !important;
+}
+.btn-cont{
+    
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-alert{
+    color: red;
+    margin-top: 10px;
+}
+.ckeditor{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0px;
+}
+.ck.ck-editor{
+}
+.ck.ck-editor__editable_inline[dir=ltr]{
+    height: 300px !important;
+}
+.star{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.sendTable .css-1b34haf-MuiDataGrid-footerContainer{
+    display: none !important;
+}
+.tittle{
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.to{
+    padding-right: 35px;
+}
+
+
+.formbtn{
+    text-decoration: none !important;
+    color: black;
+    background-color: orange;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+.tbl{
+    border: 1px solid gray;
+}
+.tblmain{
+    width: 60%;
+    margin-top: 10px;
+}
+.formcrt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.addgrp{
+    
+    margin-top: 20px;
+}
+.addgrp input{
+    height: 20px;
+    width: 95%;
+    border: 1px solid #c7c7c7;
+    padding: 13px 10px;
+}
+.tableHader{
+    font-size: 18px;
+    font-weight: 800;
+}
+.tabletittle{
+    padding: 10px;
+}
+.form{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+}
+.buttongrp{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+.tableBtnGrp{
+    padding-top: 20px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.active-mob{
+    background-color: #ffffff;
+    color:#262b40 !important;
+    font-weight: 700;
+}
+
+
+.floatLeft{
+    text-align: right;
+}
+.tableUser{
+    display: flex;
+    justify-content: space-between;
+}
+.mainTableUser{
+    text-align: center;
+}
+.loader{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    color: chocolate;
+    
+}
+.scroll{
+    min-height: 1px;
+    max-height: 300px;
+    overflow: auto;
+}
+.tablemain{
+    min-height: 4px;
+    max-height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.grptablemain{
+    min-height: 4px;
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 30px;
+}
+.templatetittle .MuiTreeItem-label{
+    font-size: 17px !important;
+    font-weight: 800;
+}
+.templatetittle{
+    border-top: 1px solid #dddddd;
+}
+
+
+
+.fileContainer{
+    align-items: flex-start !important;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+}
