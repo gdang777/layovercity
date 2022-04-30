@@ -7,7 +7,7 @@ mongoose.Promise = require('bluebird');
 const morgan = require('morgan');
 const { MONGO_URI } = require('./env');
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 6001;
 const isProd = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() === 'production';
 
 const ALLOWED_ORIGINS = ['*'];
