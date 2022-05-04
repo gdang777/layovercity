@@ -35,6 +35,7 @@ const userSchema = mongoose.Schema(
             trim: true,
             minlength: 8,
         },
+        followers: { type: Number, trim: true },
         verification: {
             email: {
                 isVerified: {
