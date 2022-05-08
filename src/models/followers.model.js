@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
 
 const followersSchema = mongoose.Schema(
     {
@@ -6,11 +7,13 @@ const followersSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             index: true,
+            ref: User,
         },
         follower: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             index: true,
+            ref: User,
         },
         value: {
             type: Boolean,

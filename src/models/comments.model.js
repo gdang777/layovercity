@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
+const Place = require('./places.model');
 
 const commentsSchema = mongoose.Schema(
     {
@@ -23,6 +25,7 @@ const commentsSchema = mongoose.Schema(
                     type: mongoose.Schema.Types.ObjectId,
                     required: true,
                     index: true,
+                    ref: Place,
                 },
                 type: {
                     type: String,
@@ -38,6 +41,7 @@ const commentsSchema = mongoose.Schema(
                     type: mongoose.Schema.Types.ObjectId,
                     required: true,
                     index: true,
+                    ref: User,
                 },
                 parentCommentId: {
                     type: mongoose.Schema.Types.ObjectId,
@@ -50,6 +54,7 @@ const commentsSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             index: true,
+            ref: User,
         },
     },
     {

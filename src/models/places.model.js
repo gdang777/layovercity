@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
+const City = require('./city.model');
 
 const placesSchema = mongoose.Schema(
     {
         images: [String],
         features: [String],
+        likes: { type: Number, trim: true },
+        comments: { type: Number, trim: true },
         price: {
             type: String,
             trim: true,
         },
         city: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
-            trim: true,
-        },
-        country: {
-            type: String,
-            required: true,
-            trim: true,
+            index: true,
+            ref: City,
         },
         category: {
             type: String,
@@ -73,6 +73,7 @@ const placesSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             index: true,
+            ref: User,
         },
         isBlocked: {
             type: Boolean,

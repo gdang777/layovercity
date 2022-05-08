@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
 
 const storiesSchema = mongoose.Schema(
     {
@@ -73,6 +74,7 @@ const storiesSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             index: true,
+            ref: User,
         },
         isBlocked: {
             type: Boolean,

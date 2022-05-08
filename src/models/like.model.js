@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
 
 const likeSchema = mongoose.Schema(
     {
@@ -20,6 +21,7 @@ const likeSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             index: true,
+            ref: User,
         },
     },
     {

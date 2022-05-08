@@ -1,74 +1,48 @@
 const Likes = require('../models/like.model');
-const { getAllUsers } = require('./user.service');
+const Places = require('../models/places.model');
 
 exports.addLike = async (data) => {
-    const [user] = await Promise.all([
-        Likes.create({
-            ...data,
-        }),
+    const [followerData] = await Promise.all([
+        Likes.update({ placeId: data.placeId, type: data.type }, { ...data }, { upsert: true }),
     ]);
 
-    return user;
+    const updatedUser = await Places.findOneAndUpdate(
+        { _id: data.placeId },
+        {
+            $inc: { likes: data.like ? 1 : -1 },
+        },
+        { new: true }
+    )
+        .lean()
+        .exec();
+
+    return followerData;
 };
 
 exports.getAllLikesForPlaces = async (id) => {
     const [result, totalCount] = await Promise.all([
-        Likes.find({ placeId: id, type: 'place' }).lean().exec(),
-        Likes.find({ placeId: id, type: 'place' }).count().lean().exec(),
+        Likes.find({ placeId: id, type: 'place', like: true })
+            .populate({
+                path: 'createdBy',
+            })
+            .lean()
+            .exec(),
+        Likes.find({ placeId: id, type: 'place', like: true }).count().lean().exec(),
     ]);
 
-    let resultData = [];
-
-    const users = await getAllUsers(0, 1000000000000);
-
-    for (let i = 0; i < result.length; i++) {
-        const user = users.result.find(
-            (ele) => ele._id.toString() === result[i].createdBy.toString()
-        );
-
-        resultData.push({
-            ...result[i],
-            user: {
-                _id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                airline: user.airline,
-                profileAirlinePicture: user.profileAirlinePicture,
-            },
-        });
-    }
-
-    return { resultData, totalCount };
+    return { result, totalCount };
 };
 
 exports.getAllLikesForStories = async (id) => {
     const [result, totalCount] = await Promise.all([
-        Likes.find({ placeId: id, type: 'story' }).lean().exec(),
-        Likes.find({ placeId: id, type: 'story' }).count().lean().exec(),
+        Likes.find({ placeId: id, type: 'story', like: true })
+            .populate({
+                path: 'createdBy',
+            })
+            .lean()
+            .exec(),
+        Likes.find({ placeId: id, type: 'story', like: true }).count().lean().exec(),
     ]);
 
-    let resultData = [];
-
-    const users = await getAllUsers(0, 100000000);
-
-    for (let i = 0; i < result.length; i++) {
-        const user = users.result.find(
-            (ele) => ele._id.toString() === result[i].createdBy.toString()
-        );
-
-        resultData.push({
-            ...result[i],
-            user: {
-                _id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                airline: user.airline,
-                profileAirlinePicture: user.profileAirlinePicture,
-            },
-        });
-    }
-
-    return { resultData, totalCount };
+    return { result, totalCount };
 };

@@ -23,7 +23,7 @@ exports.addLike = async (req, res) => {
         });
     }
     const { placeId, like, type } = req.body;
-    if (!placeId || !like || !type) {
+    if (!placeId || like === undefined || !type) {
         return res.status(400).json({
             errorMsg: `Required fields are - placeId, like, type`,
             isSuccess: false,

@@ -1,5 +1,5 @@
 const Comments = require('../models/comments.model');
-const { getAllUsers } = require('./user.service');
+const Places = require('../models/places.model');
 
 exports.addComments = async (data) => {
     const [user] = await Promise.all([
@@ -7,6 +7,16 @@ exports.addComments = async (data) => {
             ...data,
         }),
     ]);
+
+    const updatedUser = await Places.findOneAndUpdate(
+        { _id: data.placeId },
+        {
+            $inc: { comments: 1 },
+        },
+        { new: true }
+    )
+        .lean()
+        .exec();
 
     return user;
 };
@@ -36,98 +46,52 @@ exports.addChildComment = async (data) => {
             .lean()
             .exec();
 
+        const updatedUser = await Places.findOneAndUpdate(
+            { _id: data.placeId },
+            {
+                $inc: { comments: 1 },
+            },
+            { new: true }
+        )
+            .lean()
+            .exec();
+
         return user;
     } else {
         throw new Error('Only 2 Child Comment Allowed');
     }
 };
 
-const formatChildrenData = async (children, users) => {
-    let childrenData = [];
-    for (let j = 0; j < children.length; j++) {
-        const userData = users.result.find(
-            (ele) => ele._id.toString() === children[j].createdBy.toString()
-        );
-        childrenData.push({
-            ...children[j],
-            user: {
-                _id: userData._id,
-                firstName: userData.firstName,
-                lastName: userData.lastName,
-                email: userData.email,
-                airline: userData.airline,
-                profileAirlinePicture: userData.profileAirlinePicture,
-            },
-        });
-    }
-
-    return childrenData;
-};
-
 exports.getAllCommentsForPlaces = async (id) => {
     const [result, totalCount] = await Promise.all([
-        Comments.find({ placeId: id, type: 'place' }).lean().exec(),
+        Comments.find({ placeId: id, type: 'place' })
+            .populate({
+                path: 'createdBy',
+            })
+            .populate({
+                path: 'children.createdBy',
+            })
+            .lean()
+            .exec(),
         Comments.find({ placeId: id, type: 'place' }).count().lean().exec(),
     ]);
 
-    let resultData = [];
-
-    const users = await getAllUsers(0, 100000000);
-
-    for (let i = 0; i < result.length; i++) {
-        const childrenData = await formatChildrenData(result[i].children, users);
-
-        const user = users.result.find(
-            (ele) => ele._id.toString() === result[i].createdBy.toString()
-        );
-
-        resultData.push({
-            ...result[i],
-            children: [...childrenData],
-            user: {
-                _id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                airline: user.airline,
-                profileAirlinePicture: user.profileAirlinePicture,
-            },
-        });
-    }
-
-    return { resultData, totalCount };
+    return { result, totalCount };
 };
 
 exports.getAllCommentsForStories = async (id) => {
     const [result, totalCount] = await Promise.all([
-        Comments.find({ placeId: id, type: 'story' }).lean().exec(),
+        Comments.find({ placeId: id, type: 'story' })
+            .populate({
+                path: 'createdBy',
+            })
+            .populate({
+                path: 'children.createdBy',
+            })
+            .lean()
+            .exec(),
         Comments.find({ placeId: id, type: 'story' }).count().lean().exec(),
     ]);
 
-    let resultData = [];
-
-    const users = await getAllUsers(0, 100000000);
-
-    for (let i = 0; i < result.length; i++) {
-        const childrenData = await formatChildrenData(result[i].children, users);
-
-        const user = users.result.find(
-            (ele) => ele._id.toString() === result[i].createdBy.toString()
-        );
-
-        resultData.push({
-            ...result[i],
-            children: [...childrenData],
-            user: {
-                _id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                airline: user.airline,
-                profileAirlinePicture: user.profileAirlinePicture,
-            },
-        });
-    }
-
-    return { resultData, totalCount };
+    return { result, totalCount };
 };

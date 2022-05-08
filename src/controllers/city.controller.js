@@ -1,17 +1,17 @@
 const { getUserById } = require('../services/user.service');
 
 const {
-    addPlaces,
-    getAllPlaces,
-    getPlaceById,
-    updatePlace,
-    blockPlace,
-} = require('../services/places.service');
+    addCity,
+    getAllCity,
+    getCityById,
+    updateCity,
+    blockCity,
+} = require('../services/city.service');
 
 const { getUserById: getAdminUserById } = require('../services/adminUsers.service');
 const moment = require('moment');
 
-exports.addPlace = async (req, res) => {
+exports.addCity = async (req, res) => {
     const accessToken = req.header('accesstoken') || '';
     if (!accessToken) {
         return res.status(400).json({
@@ -24,16 +24,24 @@ exports.addPlace = async (req, res) => {
             errorMsg: 'Invalid accessToken',
         });
     }
-    const { images, features, price, city, category, subCategory, description, location, contact } =
-        req.body;
-    if (!images || !city || !category || !features || !contact) {
+    const { images, country, city, caption, description, currency, language, bestTime } = req.body;
+    if (
+        !images ||
+        !city ||
+        !caption ||
+        !country ||
+        !description ||
+        !currency ||
+        !language ||
+        !bestTime
+    ) {
         return res.status(400).json({
-            errorMsg: `Required fields are - images, city, category, country, features, contact`,
+            errorMsg: `Required fields are - images, city, caption, country, description, currency, language, bestTime`,
             isSuccess: false,
         });
     }
 
-    addPlaces({ ...req.body, createdBy: accessToken })
+    addCity({ ...req.body, createdBy: accessToken })
         .then(() => {
             res.send({ isRegisterSuccess: true });
         })
@@ -47,11 +55,11 @@ exports.addPlace = async (req, res) => {
         });
 };
 
-exports.getAllPlaces = async (req, res) => {
+exports.getAllCity = async (req, res) => {
     try {
-        const { from = 0, size = 10 } = req.query;
+        const { from = 0, size = 10000 } = req.query;
 
-        const result = await getAllPlaces(parseInt(from), parseInt(size));
+        const result = await getAllCity(parseInt(from), parseInt(size));
         res.send(result);
     } catch (error) {
         console.error(error);
@@ -62,11 +70,11 @@ exports.getAllPlaces = async (req, res) => {
     }
 };
 
-exports.getPlaceById = async (req, res) => {
+exports.getCityById = async (req, res) => {
     try {
-        const { placeId } = req.params;
+        const { cityId } = req.params;
 
-        const userData = await getPlaceById(placeId);
+        const userData = await getCityById(cityId);
         if (!userData) {
             return res.status(400).json({
                 errorMsg: 'Invalid Id',
@@ -74,7 +82,7 @@ exports.getPlaceById = async (req, res) => {
         }
         const { ...filteredUserData } = userData;
         res.send({
-            place: filteredUserData,
+            city: filteredUserData,
         });
     } catch (error) {
         console.error(error);
@@ -83,7 +91,7 @@ exports.getPlaceById = async (req, res) => {
     }
 };
 
-exports.updatePlace = async (req, res) => {
+exports.updateCity = async (req, res) => {
     try {
         const accessToken = req.header('accesstoken') || '';
         if (!accessToken) {
@@ -98,9 +106,9 @@ exports.updatePlace = async (req, res) => {
             });
         }
 
-        const { placeId, data } = req.body;
+        const { cityId, data } = req.body;
 
-        const userData = await updatePlace({ placeId, data, accessToken });
+        const userData = await updateCity({ cityId, data, accessToken });
         if (!userData) {
             return res.status(400).json({
                 errorMsg: 'Invalid Id',
@@ -108,7 +116,7 @@ exports.updatePlace = async (req, res) => {
         }
         const { ...filteredUserData } = userData;
         res.send({
-            user: filteredUserData,
+            city: filteredUserData,
             isUpdated: true,
         });
     } catch (error) {
@@ -118,7 +126,7 @@ exports.updatePlace = async (req, res) => {
     }
 };
 
-exports.blockPlace = async (req, res) => {
+exports.blockCity = async (req, res) => {
     try {
         const accessToken = req.header('accesstoken') || '';
         if (!accessToken) {
@@ -133,9 +141,9 @@ exports.blockPlace = async (req, res) => {
             });
         }
 
-        const { placeId, value } = req.body;
+        const { cityId, value } = req.body;
 
-        const userData = await blockPlace({ placeId, value, accessToken });
+        const userData = await blockCity({ cityId, value, accessToken });
         if (!userData) {
             return res.status(400).json({
                 errorMsg: 'Invalid Id',
