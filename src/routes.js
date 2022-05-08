@@ -1,6 +1,10 @@
 export const Routes = {
   Users: { path: "/" },
 
+  Places: { path: "/places" },
+
+  Stories: { path: "/stories" },
+
   AdminUsers: { path: "/admin-users" },
 
   customeEmail: { path: "/users/send-email" },

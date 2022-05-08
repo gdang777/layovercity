@@ -1,6 +1,6 @@
-//export const BASE_URL = "https://fatoentrepreneur.herokuapp.com";
+export const BASE_URL = "https://fatoentrepreneur.herokuapp.com";
 
-export const BASE_URL = "http://localhost:6001";
+//export const BASE_URL = "http://localhost:6001";
 
 export const UPLOAD_URL = "https://server.swiftbusinesspay.xyz";
 

@@ -18,6 +18,10 @@ import Users from "./all-customers";
 
 import AdminUsers from "./all-admin-users";
 
+import Places from "./places";
+
+import Stories from "./stories";
+
 import ApkEmail from "./Email/ApkEmail";
 import CustomEmail from "./Email/CustomEmail";
 
@@ -106,6 +110,14 @@ export default () => {
           exact
           path={Routes.AdminUsers.path}
           component={AdminUsers}
+        />
+
+        <RouteWithSidebar exact path={Routes.Places.path} component={Places} />
+
+        <RouteWithSidebar
+          exact
+          path={Routes.Stories.path}
+          component={Stories}
         />
 
         <RouteWithSidebar

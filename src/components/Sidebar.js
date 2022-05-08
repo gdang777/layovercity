@@ -190,16 +190,16 @@ export default (props = {}) => {
                 // badgeText="Pro"
                 icon={faInbox}
               />
-              {/* <NavItem
-                title="Apk Email"
-                link={Routes.ApkEmail.path}
+              <NavItem
+                title="Places"
+                link={Routes.Places.path}
                 icon={faInbox}
               />
               <NavItem
-                title="Custom Email"
-                link={Routes.customeEmail.path}
+                title="Stories"
+                link={Routes.Stories.path}
                 icon={faInbox}
-              /> */}
+              />
 
               {/* <NavItem
                 title="Dashboard"
