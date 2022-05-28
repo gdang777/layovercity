@@ -1,0 +1,11 @@
+
+.addPlaceHeading{
+    color: #474545;
+    border-radius: 40px;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+.placeActive{
+    border: 2px solid #1b86be73;
+}

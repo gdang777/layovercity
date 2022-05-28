@@ -1,0 +1,269 @@
+.destination {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #68d3e81f;
+  border-radius: 1rem;
+  transition: 0.3s ease-in-out;
+  width: 380px;
+  margin: 25px 0;
+}
+.destination img {
+  width: 100%;
+  transition: 0.3s ease-in-out;
+}
+.destination img:hover {
+  transform: scale(1.02);
+}
+.destination h3 {
+  font-size: 22px;
+  color: #0077b6;
+}
+.destination span {
+  font-weight: 600;
+  color: #5c5b5b;
+  position: relative;
+  top: -5px;
+}
+.destination p {
+  height: 50px;
+  font-weight: 600;
+}
+.destination .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.destination .info .services {
+  display: flex;
+  gap: 0.3rem;
+}
+.destination .info .services img {
+  border-radius: 1rem;
+  background-color: #48cae4d1;
+  width: 2rem;
+  /* padding: 1rem; */
+  padding: 0.3rem 0.4rem;
+}
+.destination .distance {
+  display: flex;
+  justify-content: space-between;
+}
+.destination .distance span {
+  font-weight: 600;
+  color: black;
+  position: relative;
+  top: 0px;
+}
+
+@media (max-width: 986px) {
+  .destination {
+    width: 290px;
+  }
+}
+
+@media (max-width: 776px) {
+  .destination {
+    width: 3800px;
+  }
+}
+/* Place Cards */
+.placesCard {
+  width: 400px;
+  height: 51vh;
+  border-radius: 10px;
+  margin: 25px 25px;
+  background-color: white;
+}
+.placesCard .imgDetails img {
+  width: 100%;
+  height: 40vh;
+  border-radius: 10px;
+  filter: brightness(70%);
+}
+.placesCard .imgDetails {
+  position: relative;
+}
+.placesCard .imgDetails .imageContent .imgtext {
+  background-color: #757575b3;
+  position: absolute;
+  top: 2px;
+  width: 70%;
+  margin: 10px;
+  padding: 4px 3px 0 13px;
+  border-radius: 20px;
+  /* filter: blur(4px); */
+  /* backdrop-filter: blur(5px); */
+}
+.placesCard .imgDetails .imageContent h1 {
+  font-size: 18px;
+  color: #e3e3e3;
+}
+.placesCard .imgDetails .savePlace {
+  background-color: #ffffffe2;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 37px;
+  height: 37px;
+  margin: 10px;
+  padding: 4px 3px 0 13px;
+  border-radius: 50%;
+}
+.placesCard .imgDetails .savePlace i {
+  color: #ffa50096;
+}
+.placeCardsDetails {
+  padding: 0 15px;
+}
+
+.placeCardsDetails h3 {
+  margin: 5px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #474545;
+}
+.placeCardsDetails .placeInfo p {
+  margin: 0;
+  font-weight: 600;
+  color: #474545;
+}
+.checked {
+  color: orange;
+  font-size: 12px;
+  margin: 0 2px;
+  font-weight: 900;
+}
+.placeCardsDetails .placeInfo .placesStarRating {
+  width: 90px;
+}
+.placeCardsDetails .placeInfo .placeCardRating {
+  font-size: 13px;
+}
+.placeCardsDetails .placeInfo .placeCardRating .numberOfReview {
+  font-weight: 400;
+}
+
+/* Clients Cards */
+
+.clientCards {
+  height: 45vh;
+  width: 85%;
+  background-color: #d6d8d94f;
+  margin: 10px;
+  padding: 5px;
+}
+.clientCards .clientImg img {
+  /* height: 500px; */
+  width: 100%;
+}
+.clientCards .clientContent .clientName h3 {
+  font-size: 1.2rem;
+  color: #dc3545;
+}
+
+.clientCards .clientContent .clientReview {
+  font-size: 0.7rem;
+}
+
+.nearbyCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid grey;
+  margin: 5px 0;
+  /* height: 100px; */
+}
+
+.subdiv1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.nearImg {
+  border-radius: 12px;
+}
+
+.nearPara1 {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.nearImg {
+  width: 90px !important;
+  height: 60px !important;
+  object-fit: cover;
+  margin: auto;
+}
+
+.nearPara2 {
+  font-size: 12px;
+  color: #5d5d5d;
+  font-weight: 600;
+}
+.nearCardsReviews p {
+  font-weight: 600;
+  color: #5c5b5b;
+}
+
+.reviewCards .reviewPersonDetails .reviewPersonImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.reviewCards .reviewPersonDetails .reviewPersonName h2 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #474545;
+}
+
+.reviewCards .reviewPersonDetails .reviewPersonName p {
+  font-size: 12px;
+  font-weight: 500;
+  color: #9d9d9d;
+}
+
+.reviewCards .comments {
+  font-size: 12px;
+  font-weight: 500;
+  color: #9d9d9d;
+}
+.reviewCards {
+  border-bottom: 1px solid #9d9d9d;
+  padding-bottom: 25px;
+}
+
+.dashBoardcard {
+  width: 250px;
+  height: 170px;
+  background-color: white;
+  border-radius: 5px;
+  border: 0.5px solid #8080804d;
+}
+.dashBoardcard .dashboardDetails h1 {
+  font-size: 24px;
+  color: #2d2d2d;
+}
+.dashBoardcard .dashboardDetails {
+  width: 100%;
+}
+.dashBoardcard .dashboardDetails .dashBoarddata {
+  position: relative;
+  padding-bottom: 15px;
+}
+.dashBoardcard .dashboardDetails .dashBoarddata::after {
+  content: "";
+  width: 50%;
+  height: 5px;
+  background-color: #52e707;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+}

@@ -1,0 +1,43 @@
+.addplaces{
+    background-color: #f9f9f9;
+}
+.addplaces .addPlaceHeading{
+    color: #474545;
+    border: 2px solid #1b86be73;
+    border-radius: 40px;
+    padding: 10px 25px;
+}
+.addplaces .formfield{
+    padding: 35px;
+    background-color: white;
+    margin: 15px;
+}
+.addplaces .formfield .fields label{
+    width: 100%;
+
+}
+.addplaces .formfield input,select,textarea{
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 5px 0;
+    color: #474545;
+    border-bottom: 2px solid grey;
+}
+.addplaces .formfield textarea{
+    border: 1px solid #5e5e5e3b;
+    border-bottom: 2px solid grey;
+}
+.addplaces .submitbtn{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: #48cae4;
+}
+.addplaces .submitbtn:hover{
+    color: #48cae4;
+    background-color: white;
+    border: 1px solid #48cae4;
+}

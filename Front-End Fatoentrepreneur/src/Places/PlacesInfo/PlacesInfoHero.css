@@ -1,0 +1,87 @@
+.placesInfoHero{
+    /* height: 30vh; */
+    padding: 50px 0px;
+}
+.carousel{
+    height: 50vh;
+}
+.carousel-main{
+    height: 50vh;
+}
+.react-3d-carousel{
+    width: 110%;
+}
+.react-3d-carousel .slider-container .slider-content .slider-single .slider-single-content img{
+    height: 40vh;
+    width: 100%;
+    
+}
+.react-3d-carousel .slider-container .slider-content .slider-single {
+    padding: 0 10px;
+}
+.placesInfoHero .placeTitle h3{
+    color: #0077b6;
+    font-size: 2.3rem;
+}
+.placesInfoHero .placeTitle p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #474545;
+}
+.placesInfoHero .placeSubtitle p{
+    font-weight: 600;
+    color: #474545;
+}
+
+.placesInfoHero .placeContent ul{
+    background-color: aliceblue;
+    z-index: 5;
+    position: relative;
+    box-shadow: 5px 5px 15px 1px #d1d6e77d;
+}
+
+.placesInfoHero .placeContent ul li{
+    border-right: 2px solid #474545;
+    padding-right: 40px;
+}
+.placesInfoHero .placeContent ul li.bline{
+    border-right: none;
+}
+.placesInfoHero .placeContent li div p{
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    color: #474545;
+}
+.placesInfoHero .placeContent li div h3{
+    font-size: 13px;
+    margin-top: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+.placeContent{
+    margin: 55px 0;
+}
+
+@media (max-width:776px) {
+    .placesInfoHero .placeTitle h3{
+        color: #0077b6;
+        font-size: 2.3rem;
+        text-align: center;
+    }
+    .placesInfoHero .placeTitle p{
+        text-align: center;
+    }
+    .placesInfoHero .placeSubtitle p{
+        text-align: center;
+    }
+    .carousel-main{
+        display: none;
+    }
+    .placesInfoHero .placeSubtitle p span i{
+        display: none;
+        
+    }
+}

@@ -1,0 +1,30 @@
+.verifyOTP{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+.verifyOTP .verify{
+    height: 40vh;
+    width: 70vw;
+}
+.verifyOTP .verify input{
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+}
+.verifyOTP .verify button{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 7px;
+    border: none;
+    color: white;
+    background-color: #48cae4;
+}
+.verifyOTP .verify button:hover{
+    color: #48cae4;
+    background-color: white;
+    border: 1px solid #48cae4;
+}

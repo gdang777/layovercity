@@ -1,0 +1,18 @@
+.aboutusBtn{
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: #48cae4;
+}
+.herosecContent{
+    width: 70%;
+}
+
+.herosecContent p{
+    color: #444444;
+}
+.clientsCarousel{
+    width: 70%;
+}

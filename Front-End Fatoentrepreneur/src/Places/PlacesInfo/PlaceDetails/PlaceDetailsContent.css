@@ -1,0 +1,30 @@
+.placeDetailsContent .miniNav ul li{
+    font-size: 1.3rem;
+    font-weight: normal;
+    border-bottom: 2px solid #23d3d3;
+    cursor: pointer;
+}
+.placeDetailsContent .placeName{
+    font-size: 2.3rem;
+}
+.placeDetailsContent .placeName .verified{
+    color: #78e73f;
+    font-size: 1.7rem;
+}
+
+.placeDetailsContent .place-info-details p{
+    font-weight: 600;
+    color: #5d5d5d;
+}
+.star-review{
+    color: #23d3d3 !important;
+}
+.placeDetailsContent .placeServices li{
+    /* font-weight: 600; */
+    color: #5d5d5d;
+    font-size: 1.5rem;
+}
+.placeDetailsContent .placeServices li p{
+    font-size: 1rem;
+
+}

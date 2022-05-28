@@ -1,0 +1,13 @@
+.placeinfonav ul li{
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.placeinfonav ul .active{
+    color: #23d3d3;
+    border-bottom: 2px solid #23d3d3;
+    padding-top: 5px;
+}
+.placeinfonav ul li:hover{
+    color: #23d3d3;
+}

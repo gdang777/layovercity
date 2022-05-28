@@ -1,0 +1,47 @@
+.userDashBoard{
+    background-color: #f9f9f9;
+}
+.usernav{
+    background-color: #1d1d1d;
+    height: 10vh;
+}
+.usernav ul li{
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition:2s;
+}
+.usernav ul li:hover{
+    border-bottom: 1px solid white;
+}
+.usernav ul li.active{
+    border-bottom: 1px solid white;
+}
+.bannerAlert{
+    position: relative;
+    padding: 30px 50px;
+    background: #ffd54f;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    background-image: url("https://wp.getgolo.com/city-guide/wp-content/plugins/golo-framework/assets/images/people-alert.png");
+    background-repeat: no-repeat;
+    background-position: 92% 0;
+}
+.bannerAlert h2{
+    margin-bottom: 5px;
+    line-height: 50px;
+}
+.bannerAlert .bannerButton .bannerbtn{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: #48cae4;
+
+}
+@media (max-width:998px) {
+    .bannerAlert{
+        background-image: none;
+    }
+}

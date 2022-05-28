@@ -1,0 +1,18 @@
+.placeContentHeading{
+    /* text-transform: uppercase; */
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 2rem;
+}
+
+.placeContentMain .content{
+    font-weight: 400;
+}
+
+.placeContentMain .content p{
+    font-size: 1rem;
+    color: #666c77;
+    font-weight: 600;
+    line-height: 30px;
+    /* letter-spacing: 1px; */
+}
