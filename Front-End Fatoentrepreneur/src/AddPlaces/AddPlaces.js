@@ -6,6 +6,8 @@ import "./AddPlaces.css";
 import Footer from "../assets/Components/Footer/Footer";
 
 function AddPlaces() {
+  const userLoginData = JSON.parse(sessionStorage.getItem("userLoginData"));
+  console.log(userLoginData)
   const highlights = [
     {
       id: "wifi",
@@ -107,9 +109,9 @@ function AddPlaces() {
 
   const submitPlaces = () => {
     const data = {
-      placeName: formData.placeName,
+      category: formData.placeName,
       price: formData.price,
-      stayTime: formData.stayTime,
+      city:"62782323c78dfb38bf85ed95",
       description: formData.description,
       features:feature,
       subCategory:placetype,
@@ -117,14 +119,13 @@ function AddPlaces() {
       contact: {
         address: formData.address,
         email: formData.email,
-        phone1: formData.phone1,
-        phone2: formData.phone1,
         website: formData.website,
-        facebookURL: formData.facebookURL,
-        instagramURL: formData.instagramURL,
-        twitterURL: formData.twitterURL,
+        facebook: formData.facebookURL,
+        instagram: formData.instagramURL
       },
     };
+
+    console.log(data);
     async function postData(url = "", data = {}) {
       console.log(data);
       const response = await fetch(url, {
@@ -134,6 +135,7 @@ function AddPlaces() {
         credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
+          "accessToken" : userLoginData.accessToken
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
@@ -141,6 +143,8 @@ function AddPlaces() {
       });
       return response.json();
     }
+
+    console.log("Clicked");
 
     postData(
       "https://fatoentrepreneur.herokuapp.com/places/add",
@@ -210,7 +214,7 @@ function AddPlaces() {
                 cols=""
                 placeholder="Item description"
                 onChange={dataChangeHandler}
-                name="placeDescription"
+                name="description"
               ></textarea>
             </label>
           </div>

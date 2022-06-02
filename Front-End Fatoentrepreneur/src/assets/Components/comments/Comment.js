@@ -1,6 +1,6 @@
 import CommentForm from "./CommentForm";
 
-import userImg from './user-icon.png';
+import userImg from "./user-icon.png";
 
 const Comment = ({
   comment,
@@ -13,60 +13,68 @@ const Comment = ({
   parentId = null,
   currentUserId,
 }) => {
+
   const isEditing =
     activeComment &&
-    activeComment.id === comment.id &&
+    activeComment.id === comment._id &&
     activeComment.type === "editing";
   const isReplying =
     activeComment &&
-    activeComment.id === comment.id &&
+    activeComment.id === comment._id &&
     activeComment.type === "replying";
   const fiveMinutes = 300000;
   const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
   const canDelete =
-    currentUserId === comment.userId && replies.length === 0 && !timePassed;
-  const canReply = Boolean(currentUserId);
-  const canEdit = currentUserId === comment.userId && !timePassed;
+    currentUserId === comment._id && replies.length === 0 && !timePassed;
+  const canReply = Boolean(comment._id);
+  const canEdit = currentUserId === comment._id && !timePassed;
   const replyId = parentId ? parentId : comment.id;
   const createdAt = new Date(comment.createdAt).toLocaleDateString();
   return (
     <div key={comment.id} className="comment">
       <div className="comment-image-container">
-        <img src={userImg}/>
+        <img src={userImg} />
       </div>
       <div className="comment-right-part">
         <div className="comment-content">
-          <div className="comment-author">{comment.username}</div>
-          <div>{createdAt}</div>
+          <div className="comment-author">{comment.createdBy.firstName}</div>
+          <div>
+            {comment.createdBy.createdAt.substring(0, 10)}{" "}
+            {comment.createdBy.createdAt.substring(11, 16)}
+          </div>
         </div>
-        {!isEditing && <div className="comment-text">{comment.body}</div>}
+        {!isEditing && (
+          <div className="comment-text">{comment.description}</div>
+        )}
         {isEditing && (
           <CommentForm
             submitLabel="Update"
             hasCancelButton
             initialText={comment.body}
-            handleSubmit={(text) => updateComment(text, comment.id)}
+            handleSubmit={(text) => updateComment(text, comment._id)}
             handleCancel={() => {
               setActiveComment(null);
             }}
           />
         )}
         <div className="comment-actions">
-          {canReply && (
+          {sessionStorage.getItem("userLoginData") &&
+          JSON.parse(sessionStorage.getItem("userLoginData")).isLoginSuccess ? <div>
+          {canReply &&  (
             <div
               className="comment-action"
               onClick={() =>
-                setActiveComment({ id: comment.id, type: "replying" })
+                setActiveComment({ id: comment._id, type: "replying" })
               }
             >
-              Reply 
+              Reply
             </div>
-          )}
+          ) }
           {canEdit && (
             <div
               className="comment-action"
               onClick={() =>
-                setActiveComment({ id: comment.id, type: "editing" })
+                setActiveComment({ id: comment._id, type: "editing" })
               }
             >
               Edit
@@ -75,11 +83,12 @@ const Comment = ({
           {canDelete && (
             <div
               className="comment-action"
-              onClick={() => deleteComment(comment.id)}
+              onClick={() => deleteComment(comment._id)}
             >
               Delete
             </div>
           )}
+</div> : null}
         </div>
         {isReplying && (
           <CommentForm

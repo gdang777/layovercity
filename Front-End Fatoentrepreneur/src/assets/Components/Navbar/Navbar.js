@@ -1,36 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "./logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Navbar() {
+  const history = useHistory();
   const navItems = [
     {
       it: "Home",
       li: "/",
-      icon:'fa-solid fa-house'
+      icon: "fa-solid fa-house",
     },
     {
       it: "Places",
       li: "/Places",
-      icon: 'fa-solid fa-globe',
+      icon: "fa-solid fa-globe",
     },
     {
       it: "Stories",
       li: "/Stories",
-      icon:'fa-brands fa-blogger'
+      icon: "fa-brands fa-blogger",
     },
     {
       it: "About Us",
       li: "/AboutUs",
-      icon:'fa-solid fa-people-group'
+      icon: "fa-solid fa-people-group",
     },
     {
       it: "Contact Us",
       li: "/ContactUs",
-      icon: 'fa-solid fa-envelope',
+      icon: "fa-solid fa-envelope",
     },
   ];
+
+  useEffect(() => {}, [sessionStorage]);
 
   const [active, setActive] = useState(1);
   return (
@@ -66,8 +69,32 @@ function Navbar() {
           </div>
           <div className="col-md-3 col-sm-6 pt-1 d-flex flex-wrap justify-content-center align-items-center login-signup">
             <li className="m-2 p-2">
-              <Link to="/Login"><i class="fa-solid fa-right-to-bracket responsive"></i>  <span> LogIn/SignUp</span></Link>
+              <Link
+                onClick={
+                  sessionStorage.getItem("userLoginData") &&
+                  JSON.parse(sessionStorage.getItem("userLoginData"))
+                    .isLoginSuccess
+                    ? () => {
+                        sessionStorage.clear();
+                        window.location.reload(true);
+                      }
+                    : () => {
+                        history.push("/login");
+                      }
+                }
+              >
+                <i class="fa-solid fa-right-to-bracket responsive"></i>{" "}
+                <span>
+                  {" "}
+                  {sessionStorage.getItem("userLoginData") &&
+                  JSON.parse(sessionStorage.getItem("userLoginData"))
+                    .isLoginSuccess
+                    ? "LogOut"
+                    : "LogIn/SignUp"}
+                </span>
+              </Link>
             </li>
+
             <Link to="/AddPlaces">
               {" "}
               <button>Add Places/Story</button>

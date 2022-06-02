@@ -22,6 +22,11 @@ function AddInfo() {
   return (
     <div>
       <div className="container">
+        {sessionStorage.getItem("userLoginData") &&
+        JSON.parse(sessionStorage.getItem("userLoginData"))
+          .isLoginSuccess ? null : (
+          <h5>Please login to continue!</h5>
+        )}
         <div className="navigate d-flex flex-wrap justify-content-start my-4">
           <h5
             className={`${
@@ -46,7 +51,7 @@ function AddInfo() {
         </div>
       </div>
       {addPlace ? <AddPlaces /> : <AddStory />}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

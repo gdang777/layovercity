@@ -26,10 +26,10 @@ const DashBoard = () => {
   )
 }
 
-const Profile=()=>{
-  return(
-    <div>Profile</div>
-  )
-}
+// const Profile=()=>{
+//   return(
+//     <div>Profile</div>
+//   )
+// }
 
-export {DashBoard,Profile}
+export {DashBoard}

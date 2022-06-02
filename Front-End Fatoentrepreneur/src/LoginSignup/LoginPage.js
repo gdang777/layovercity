@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 import "./Login.css";
 
-function LoginPage() {
+function LoginPage({ setUserLoginData }) {
   const signUpButton = document.getElementById("signUp");
   const signInButton = document.getElementById("signIn");
   const container1 = document.getElementById("container1");
 
+  const history = useHistory();
   const ref = useRef(null);
   function signUpBtn() {
     const container2 = ref.current;
@@ -32,7 +33,7 @@ function LoginPage() {
       [name]: value,
     }));
     e.preventDefault();
-    console.log(signUpData);
+    // console.log(signUpData);
   };
 
   const submitSignUp = (e) => {
@@ -46,7 +47,7 @@ function LoginPage() {
     };
 
     async function postData(url = "", data = {}) {
-      console.log(data);
+      // console.log(data);
       const response = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -66,11 +67,10 @@ function LoginPage() {
       "https://fatoentrepreneur.herokuapp.com/users/register",
       data
     ).then((res) => {
-      console.log("Response Message", res);
-      alert('Response msg',res)
+      // console.log("Response Message", res);
+      alert("Response msg", res);
     });
   };
-
 
   const [signInData, setSignInData] = useState({
     logPassword: "",
@@ -79,22 +79,24 @@ function LoginPage() {
 
   const LoginDataChangeHandler = (e) => {
     const { name, value } = e.target;
+    // console.log(e.target.value);
     setSignInData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
     e.preventDefault();
   };
-console.log(signInData)
+  // console.log(signInData);
 
   const submitSignIn = () => {
+    // console.log(signInData);
     const data = {
-      password: signInData.password,
-      email: signInData.email,
+      password: signInData.logPassword,
+      email: signInData.logEmail,
     };
 
     async function postData(url = "", data = {}) {
-      console.log(data);
+      // console.log(data);
       const response = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -110,13 +112,19 @@ console.log(signInData)
       return response.json();
     }
 
-    postData(
-      "https://fatoentrepreneur.herokuapp.com/users/login",
-      data
-    ).then((res) => {
-      console.log("Response Message", res);
-      alert(res)
-    });
+    // console.log("Submit Clicked!")
+
+    postData("https://fatoentrepreneur.herokuapp.com/users/login", data).then(
+      (res) => {
+        // console.log("Login Response aa gya!",res,res.isLoginSuccess)
+        setUserLoginData(res);
+        if (res.isLoginSuccess) {
+          // console.log("yahaan bhi aa raha hai");
+          history.push("/dashBoard");
+          window.location.reload(true);
+        }
+      }
+    );
   };
 
   return (
@@ -169,13 +177,13 @@ console.log(signInData)
               name="password"
               required
             />
-              <button className="button" onClick={submitSignUp}>
-                Sign Up
-              </button>
+            <button className="button" onClick={submitSignUp}>
+              Sign Up
+            </button>
           </form>
         </div>
         <div className="form-container1 sign-in-container1">
-          <form className="loginForm" action="/dashBoard">
+          <div className="loginForm">
             <h1>Sign in</h1>
             <div className="social-container1">
               <a href="#" className="social">
@@ -189,18 +197,27 @@ console.log(signInData)
               </a>
             </div>
             <span>or use your account</span>
-            <input className="loginInput" type="email" placeholder="Email" required name="logEmail" onClick={LoginDataChangeHandler} />
+            <input
+              className="loginInput"
+              type="email"
+              placeholder="Email"
+              required
+              name="logEmail"
+              onChange={LoginDataChangeHandler}
+            />
             <input
               className="loginInput"
               type="password"
               placeholder="Password"
               name="logPassword"
-              onClick={LoginDataChangeHandler}
+              onChange={LoginDataChangeHandler}
               required
             />
             <a href="#">Forgot your password?</a>
-            <button className="button" onClick={submitSignIn} >Sign In</button>
-          </form>
+            <button className="button" onClick={submitSignIn}>
+              Sign In
+            </button>
+          </div>
         </div>
         <div className="overlay-container1">
           <div className="overlay">

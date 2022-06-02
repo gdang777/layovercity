@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Footer from '../assets/Components/Footer/Footer'
 import "./UserDashboard.css"
-import {DashBoard , Profile} from './DashAndProfile'
+import {DashBoard } from './DashAndProfile'
 
 
 function UserDashBoard() {
@@ -22,10 +22,11 @@ function UserDashBoard() {
     <nav className='usernav d-flex flex-wrap align-items-center '>
         <ul className='d-flex flex-wrap align-items-center px-5'>
             <li className={dashState=='dashBoard'?'mx-4 active':'mx-4 '} onClick={onNavigate}>Dash Board</li>
-            <li className={dashState=='profile'?'mx-4 active':'mx-4 '} onClick={onNavigate}>Profile</li>
+            {/* <li className={dashState=='profile'?'mx-4 active':'mx-4 '} onClick={onNavigate}>Profile</li> */}
         </ul>
     </nav>
-{dashActive?<DashBoard/>:<Profile/>}
+    <DashBoard/>
+{/* {dashActive?<DashBoard/>:<Profile/>} */}
     <Footer/>
     </div>
   )

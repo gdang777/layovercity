@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 
 import Navbar from "./assets/Components/Navbar/Navbar";
 import Homepage from "./HomePage/Homepage";
@@ -18,50 +18,51 @@ import VerifyOTP from "./LoginSignup/VerifyOTP";
 import AddInfo from "./AddPlaces/AddInfo";
 import Loader from "./assets/Components/Loader/Loader";
 
-
-
-
 function App() {
+  const setUserLoginData = (userData) => {
+    sessionStorage.setItem("userLoginData", JSON.stringify(userData));
+  };
+
   return (
     <div className="App">
       <Router>
-      <Navbar />
+        <Navbar />
         <Switch>
           <Route exact path="/Places">
-            <Places />
+            <Places setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/city/:cityName/:cityID">
-            <PlacesInfo />
+            <PlacesInfo setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/AddPlaces">
-            <AddInfo/>
+            <AddInfo setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/dashBoard">
-          <UserDashBoard/>
+            <UserDashBoard setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/Stories">
-            <Stories />
+            <Stories setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/story/:storyheading/:storyID">
-           <SingleStory/>
+            <SingleStory setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/AboutUs">
-            <About />
+            <About setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/Login">
-            <LoginPage/>
+            <LoginPage setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/verification">
-            <VerifyOTP/>
+            <VerifyOTP setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/ContactUs">
-            <Contact />
+            <Contact setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/place/:placeName/:placeID">
-            <PlaceDetails />
+            <PlaceDetails setUserLoginData={setUserLoginData} />
           </Route>
           <Route exact path="/">
-            <Homepage />
+            <Homepage setUserLoginData={setUserLoginData} />
           </Route>
         </Switch>
       </Router>
