@@ -292,10 +292,10 @@ function AddPlaces() {
           <h4>HIGHTLIGHTS </h4>
           <div className="fields my-4">
             <label htmlFor="place">
-              <div className="inputFields d-flex justify-content-around align-items-start my-4">
+              <div className="inputFields d-flex justify-content-start flex-wrap align-items-start my-4">
                 {highlights.map((data, index) => {
                   return (
-                    <div className="d-flex flex-column mx-4">
+                    <div className="d-flex flex-column mx-4" style={{width:"150px"}}>
                       <input
                         type="checkbox"
                         id={data.id}
@@ -303,7 +303,7 @@ function AddPlaces() {
                         className="my-2 inputval"
                         onChange={onCheck}
                       />
-                      <label for={data.id}>{data.title}</label>
+                      <label for={data.id} className="text-center">{data.title}</label>
                     </div>
                   );
                 })}
