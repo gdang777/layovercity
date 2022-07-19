@@ -98,7 +98,7 @@ function Places() {
   return (
     <>
     <div className="places">
-      {/* <DropDownNav /> */}
+      <DropDownNav />
       <h3 className=" mt-4 mx px-5 container-fluid chgedcolor">
         Recommended For You
       </h3>

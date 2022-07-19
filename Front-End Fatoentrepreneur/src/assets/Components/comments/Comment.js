@@ -13,6 +13,7 @@ const Comment = ({
   parentId = null,
   currentUserId,
 }) => {
+  // console.log(replies , comment._id);
 
   const isEditing =
     activeComment &&
@@ -29,7 +30,7 @@ const Comment = ({
   const canReply = Boolean(comment._id);
   const canEdit = currentUserId === comment._id && !timePassed;
   const replyId = parentId ? parentId : comment.id;
-  const createdAt = new Date(comment.createdAt).toLocaleDateString();
+  // const createdAt = new Date(comment.createdAt).toLocaleDateString();
   return (
     <div key={comment.id} className="comment">
       <div className="comment-image-container">
@@ -64,7 +65,10 @@ const Comment = ({
             <div
               className="comment-action"
               onClick={() =>
-                setActiveComment({ id: comment._id, type: "replying" })
+                {
+                  console.log(comment._id)
+                  setActiveComment({ id: comment._id, type: "replying" })
+                }
               }
             >
               Reply
@@ -93,7 +97,7 @@ const Comment = ({
         {isReplying && (
           <CommentForm
             submitLabel="Reply"
-            handleSubmit={(text) => addComment(text, replyId)}
+            handleSubmit={(text) => {addComment(text, comment.parentCommentId ? comment.parentCommentId : comment._id);setActiveComment({})}}
           />
         )}
         {replies.length > 0 && (

@@ -11,6 +11,7 @@
     cursor: pointer;
     transition:2s;
 }
+
 .usernav ul li:hover{
     border-bottom: 1px solid white;
 }

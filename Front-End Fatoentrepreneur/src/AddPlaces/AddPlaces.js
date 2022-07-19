@@ -7,7 +7,7 @@ import Footer from "../assets/Components/Footer/Footer";
 
 function AddPlaces() {
   const userLoginData = JSON.parse(sessionStorage.getItem("userLoginData"));
-  console.log(userLoginData)
+  // console.log(userLoginData)
   const highlights = [
     {
       id: "wifi",
@@ -91,7 +91,7 @@ function AddPlaces() {
 
   const [category,setCategory]=useState('');
   const [placetype,setPlaceType]=useState('');
-  console.log(category,placetype);
+  // console.log(category,placetype);
 
   const image = [];
   const [picked, setPicked] = useState(false);
@@ -125,9 +125,9 @@ function AddPlaces() {
       },
     };
 
-    console.log(data);
+    // console.log(data);
     async function postData(url = "", data = {}) {
-      console.log(data);
+      // console.log(data);
       const response = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -144,13 +144,14 @@ function AddPlaces() {
       return response.json();
     }
 
-    console.log("Clicked");
+    // console.log("Clicked");
 
     postData(
       "https://fatoentrepreneur.herokuapp.com/places/add",
       data
     ).then((res) => {
-      console.log("Response Message", res);
+      // console.log("Ho toh raha hai")
+      // console.log("Response Message", res);
     });
   };
 
@@ -292,10 +293,10 @@ function AddPlaces() {
           <h4>HIGHTLIGHTS </h4>
           <div className="fields my-4">
             <label htmlFor="place">
-              <div className="inputFields d-flex justify-content-start flex-wrap align-items-start my-4">
+              <div className="inputFields d-flex justify-content-around align-items-start my-4">
                 {highlights.map((data, index) => {
                   return (
-                    <div className="d-flex flex-column mx-4" style={{width:"150px"}}>
+                    <div className="d-flex flex-column mx-4">
                       <input
                         type="checkbox"
                         id={data.id}
@@ -303,7 +304,7 @@ function AddPlaces() {
                         className="my-2 inputval"
                         onChange={onCheck}
                       />
-                      <label for={data.id} className="text-center">{data.title}</label>
+                      <label for={data.id}>{data.title}</label>
                     </div>
                   );
                 })}

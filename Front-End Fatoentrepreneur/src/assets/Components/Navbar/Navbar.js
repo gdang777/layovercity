@@ -76,6 +76,9 @@ function Navbar() {
                     .isLoginSuccess
                     ? () => {
                         sessionStorage.clear();
+                        if(window.location.href.substring(window.location.href.length-9)==="dashBoard"){
+                          history.push("/login");
+                        }
                         window.location.reload(true);
                       }
                     : () => {

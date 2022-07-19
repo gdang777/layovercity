@@ -12,7 +12,6 @@ import Loader from "../../assets/Components/Loader/Loader";
 import Comments from "../../assets/Components/comments/Comments";
 
 function SingleStory() {
-  const userLoginData = JSON.parse(sessionStorage.getItem('userLoginData'));
   const content = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
   officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
   fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
@@ -20,6 +19,7 @@ function SingleStory() {
 
   let { storyID } = useParams();
   const [storyData, setStoryData] = useState([]);
+  const [storyComment,setStoryComment] = useState([]);
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(false);
 
@@ -32,40 +32,22 @@ function SingleStory() {
         // console.log(json.story)
         setLoading(false);
       });
+
+    fetch(`https://fatoentrepreneur.herokuapp.com/comments/stories?id=${storyID}`)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json)
+        setStoryComment(json.result);
+      });
   }, []);
 
-  const addLikes = () => {
-    setLikes(!likes);
-      const data = {
-          placeId: storyID,
-          like: !likes,
-          type: 'place',
-      };
-      console.log(data);
-      async function postData(url = '', data = {}) {
-          console.log(data);
-          const response = await fetch(url, {
-              method: 'POST',
-              mode: 'cors',
-              cache: 'no-cache',
-              credentials: 'same-origin',
-              headers: {
-                  'Content-Type': 'application/json',
-                  accessToken: userLoginData.accessToken,
-              },
-              redirect: 'follow',
-              referrerPolicy: 'no-referrer',
-              body: JSON.stringify(data),
-          });
-          return response.json();
-      }
-
-      console.log('Clicked');
-
-      postData('https://fatoentrepreneur.herokuapp.com/likes', data).then((res) => {
-          console.log('Response Message', res);
-      });
-  };
+  // const heading =storyData.title;
+  // const elements =heading.split(" ");
+  // const firstElement = elements[0]+" ";
+  // let SecondElement="";
+  // for (let i = 1; i < elements.length; i++) {
+  //    SecondElement=SecondElement+elements[i]+" ";
+  // }
 
   return loading ? (
     <Loader />
@@ -90,7 +72,9 @@ function SingleStory() {
                     likes ? "solid" : "regular"
                   } fa-heart redHeart mx-3`}
                   style={{ fontSize: "24px" }}
-                  onClick={addLikes}
+                  onClick={() => {
+                    setLikes(!likes);
+                  }}
                 ></i>
               </span>
             </div>
@@ -103,9 +87,9 @@ function SingleStory() {
               <Sidebar image="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandblog/demo/wp-content/uploads/2015/11/aboutme.jpg" />
             </div>
           </div>
-          {/* <div className="px-4 col-6">
-            <Comments currentUserId={1} />
-          </div> */}
+          <div className="px-4 col-6">
+            <Comments setStoryComment={setStoryComment} placeID={storyID} comment={storyComment} isStory={true} currentUserId={1} />
+          </div>
           <div className="otherStories">
             <h2 className="m-4">
               {" "}

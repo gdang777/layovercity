@@ -123,6 +123,9 @@ function LoginPage({ setUserLoginData }) {
           history.push("/dashBoard");
           window.location.reload(true);
         }
+        else{
+          alert(res.errMsg)
+        }
       }
     );
   };

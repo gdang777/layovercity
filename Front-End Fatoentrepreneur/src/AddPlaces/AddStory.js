@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./AddPlaces.css";
 
 function AddStory() {
+  const userLoginData = JSON.parse(sessionStorage.getItem("userLoginData"));
   const [formData, setFormData] = useState({
     storyName: "",
     city: "",
@@ -27,16 +28,15 @@ function AddStory() {
     }));
   };
 
-
   const image = [];
   const [picked, setPicked] = useState();
   const fileUpload = (e) => {
     e.preventDefault();
 
     console.log(e.target.files);
-    const [f]=e.target.files;
-    setPicked(f)
-      // image.push(e.target.files);
+    const [f] = e.target.files;
+    setPicked(f);
+    // image.push(e.target.files);
     // if (!picked) {
     //   setPicked(true);
     // } else {
@@ -46,8 +46,7 @@ function AddStory() {
     //   setPicked(false);
     // }
   };
-// console.log(picked,category)
-
+  // console.log(picked,category)
 
   const submitStory = (e) => {
     e.preventDefault();
@@ -57,19 +56,10 @@ function AddStory() {
       country: formData.country,
       description: formData.description,
       subCategory: category,
-      images: picked,
-      contact: {
-        address: formData.address,
-        email: formData.email,
-        phone1: formData.phone1,
-        phone2: formData.phone1,
-        website: formData.website,
-        facebookURL: formData.facebookURL,
-        instagramURL: formData.instagramURL,
-        twitterURL: formData.twitterURL,
-      },
+      category: category,
+      images: picked
     };
-console.log(data)
+    console.log(data);
     async function postData(url = "", data = {}) {
       console.log(data);
       const response = await fetch(url, {
@@ -79,6 +69,7 @@ console.log(data)
         credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
+          "accessToken" : userLoginData.accessToken
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",

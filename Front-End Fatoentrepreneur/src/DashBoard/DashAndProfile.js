@@ -13,6 +13,7 @@ const DashBoard = () => {
             <h2>Choose a plan to submit your place!</h2>
             <div className="bannerButton mt-3">
                 <button className='bannerbtn'> Upgrade Now</button>
+                
             </div>
         </div>
         <div className="userCard my-4 d-flex flex-wrap align-items-center justify-content-between">
